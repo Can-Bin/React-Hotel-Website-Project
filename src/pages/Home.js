@@ -4,6 +4,7 @@ import FeaturedRooms from "../components/FeaturedRooms"
 import Hero from "../components/Hero"
 import Services from "../components/Services"
 
+
 const Home = () => {
     return (
         <div>
