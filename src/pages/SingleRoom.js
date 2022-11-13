@@ -11,7 +11,7 @@ const SingleRoom = () => {
   const {getRoom} = useContext(RoomContext)
   const {slug} = useParams()
   const room = getRoom(slug)
-  console.log(room);
+  // console.log(room);
   return (
     <div>
       {
