@@ -1,4 +1,4 @@
-import { Room } from '@mui/icons-material'
+import Room  from "./Room"
 import React, { useState } from 'react'
 
 const RoomList = ({rooms}) => {

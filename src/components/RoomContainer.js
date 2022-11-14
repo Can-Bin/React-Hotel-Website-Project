@@ -16,7 +16,7 @@ const RoomContainer = () => {
   // }
   return (
     <div>
-      {/* <RoomFilter rooms={rooms}/> */}
+      <RoomFilter rooms={rooms}/>
       <RoomList rooms={sortedRooms}/>
     </div>
   )
