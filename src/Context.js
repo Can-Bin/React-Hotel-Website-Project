@@ -8,18 +8,30 @@ const RoomContextProvider = (props) => {
         rooms:[],
         sortedRooms:[],
         featuredRooms:[],
-        loading: true
+        loading:true,
+        type:"all", 
+        price:0,
+        minPrice:0,
+        maxPrice:0,
+        minSize:0,
+        maxSize:0,
+        breaksfast:false,
+        pets:false
     })
 
     useEffect(() => {
         let rooms = formatData(items)
         let featuredRooms = rooms.filter(room => room.featured === true)
-        
+        let maxPrice = Math.max(...rooms.map(item => item.price))
+        let maxSize = Math.max(...rooms.map(item => item.size))
         setState({
             rooms,
             featuredRooms,
             sortedRooms : rooms,
-            loading: false
+            loading: false,
+            price:maxPrice,
+            maxPrice,
+            maxSize,
         })
     }, [])
 
@@ -40,9 +52,20 @@ const RoomContextProvider = (props) => {
         const room = tempRooms.find(room => room.slug === slug)
         return room
       }
+
+      const handleChange = (e) => {
+        const target = e.target
+        const value = e.type === "checkbox" ? target.checked : target.value
+        const value = e.target.value
+        
+      }
+
+      const filterRooms = () => {
+        console.log("hello")
+      }
     return(
         <div>
-            <RoomContext.Provider value={{state, getRoom }}>
+            <RoomContext.Provider value={{state, getRoom,handleChange }}>
                 {props.children}
             </RoomContext.Provider>
         </div>

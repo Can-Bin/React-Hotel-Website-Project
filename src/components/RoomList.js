@@ -1,5 +1,5 @@
 import Room  from "./Room"
-import React, { useState } from 'react'
+import React from 'react'
 
 const RoomList = ({rooms}) => {
 
