@@ -9,7 +9,7 @@ const RoomContextProvider = (props) => {
         sortedRooms:[],
         featuredRooms:[],
         loading:true,
-        type:"all", 
+        type:"all ", 
         price:0,
         minPrice:0,
         maxPrice:0,
@@ -33,6 +33,9 @@ const RoomContextProvider = (props) => {
             maxPrice,
             maxSize,
         })
+        console.log(rooms);
+        
+
     }, [])
 
     
@@ -54,14 +57,29 @@ const RoomContextProvider = (props) => {
       }
 
       const handleChange = (e) => {
-        const target = e.target
-        const value = e.type === "checkbox" ? target.checked : target.value
-        const value = e.target.value
+        const target = e.target;
+        const value = e.type === "checkbox" ? target.checked : target.value;
+        const name = e.target.name 
+        console.log(name, value);
+    
+        setState(
+          {
+            [name]:value
+          },
+          filterRooms
+        )
         
       }
 
       const filterRooms = () => {
-        console.log("hello")
+        // let {rooms, type, capacity,price, minSize, maxSize,breakfast,pets} = state
+        // let tempRooms = [...rooms];                                                                                                                                                                                                       
+        // if(type !== "all"){
+        //   tempRooms = tempRooms.filter(room => room.type === type)
+        // }
+        // setState({
+        //       })
+        console.log("hello");
       }
     return(
         <div>
@@ -72,4 +90,4 @@ const RoomContextProvider = (props) => {
     )
 };
 
-export default RoomContextProvider;
+export default RoomContextProvider; 

@@ -10,20 +10,21 @@ const RoomList = ({rooms}) => {
       <h3>unfortunately no rooms matched your search parameters</h3>
     </div>
     )
-  }   
-  return(
-    <div className="roomsList">
-      <div className="roomslist-center">
-        {
-          rooms.map((item) => {
-            return (
-              <Room key={item.id} room={item}/>
-            )
-          })
-        }
+  } 
+    return(
+      <div className="roomsList">
+        <div className="roomslist-center">
+          {
+            rooms.map((item) => {
+              return (
+                <Room key={item.id} room={item}/>
+              )
+            })
+          }
+        </div>
       </div>
-    </div>
-  )
+    )
+  
   
 
 //     return(
