@@ -33,7 +33,7 @@ const RoomContextProvider = (props) => {
             maxPrice,
             maxSize,
         })
-        console.log(rooms);
+        console.log();
         
 
     }, [])
@@ -59,28 +59,35 @@ const RoomContextProvider = (props) => {
       const handleChange = (e) => {
         const target = e.target;
         const value = e.type === "checkbox" ? target.checked : target.value;
-        const name = e.target.name 
+        const name = target.name 
         console.log(name, value);
     
         setState(
           {
             [name]:value
-          },
-          filterRooms
-        )
-        
+          }
+          
+        )      
       }
+      
+      useEffect(() => {
+        const filterRooms = () => {
+          let {rooms, type, capacity,price, minSize, maxSize,breakfast,pets} = state
+          let tempRooms = [...rooms];                                                                                                                                                                                                       
+          if(type !== "all"){
+            let tempRooms = tempRooms.filter(room => room.type === type)
+          }
+          setState({
+            sortedRooms: tempRooms
+          })
+          // console.log(state);
 
-      const filterRooms = () => {
-        // let {rooms, type, capacity,price, minSize, maxSize,breakfast,pets} = state
-        // let tempRooms = [...rooms];                                                                                                                                                                                                       
-        // if(type !== "all"){
-        //   tempRooms = tempRooms.filter(room => room.type === type)
-        // }
-        // setState({
-        //       })
-        console.log("hello");
-      }
+        }    
+      }, [state.name])
+      
+      
+
+     
     return(
         <div>
             <RoomContext.Provider value={{state, getRoom,handleChange }}>
