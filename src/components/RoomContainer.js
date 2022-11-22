@@ -9,11 +9,11 @@ const RoomContainer = () => {
   // console.log(state)
   const {loading, sortedRooms, rooms} = state
 
-  // if(loading){
-  //   return(
-  //     <Loading/>
-  //   )
-  // }
+  if(loading){
+    return(
+      <Loading/>
+    )
+  }
   return (
     <div>
       <RoomFilter rooms={rooms}/>
