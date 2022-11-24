@@ -1,5 +1,7 @@
 import { createContext, useEffect, useState } from "react";
 import items from "./data"
+import Client from "./Contentful"
+
 
 export const RoomContext = createContext();
 
@@ -19,8 +21,14 @@ const RoomContextProvider = (props) => {
         pets:false
     })
 
-    useEffect(() => {
-        let rooms = formatData(items)
+    const getData = async () => {
+      try{
+        let response = await Client.getEntries({
+          content_type: 'example',
+          order: 'sys.createdAt'
+        })
+        console.log(response.items)
+        let rooms = formatData(response.items)
         let featuredRooms = rooms.filter(room => room.featured === true)
         let maxPrice = Math.max(...rooms.map(item => item.price))
         let maxSize = Math.max(...rooms.map(item => item.size))
@@ -33,9 +41,14 @@ const RoomContextProvider = (props) => {
             maxPrice,
             maxSize,
         })
-        console.log();
-        
+      }
+      catch (err){
+        console.log(err)
+      }
+    } 
 
+    useEffect(() => {
+     getData()
     }, [])
 
     
@@ -45,7 +58,9 @@ const RoomContextProvider = (props) => {
           let id = item.sys.id;
           let images = item.fields.images.map((image) => image.fields.file.url);
           let room = {...item.fields, images, id}
+          // console.log(room);
           return room;
+          
         });
         return tempItems
       }
